@@ -9,18 +9,24 @@ import './styles.scss';
 const Scores = ({ yourScore = 0, hisScore = 0 }) => (
   <div className="scores">
     <div className="score">
-      <p className="score__title">Votre score</p>
+      <p className="score__title">Votre score (X)</p>
       <p className="score__number">{yourScore}</p>
     </div>
     <div className="score">
-      <p className="score__title">Son score</p>
+      <p className="score__title">Son score (O)</p>
       <p className="score__number">{hisScore}</p>
     </div>
   </div>
 );
 
 Scores.propTypes = {
-  turn: PropTypes.string.isRequired,
+  yourScore: PropTypes.number,
+  hisScore: PropTypes.number,
+};
+
+Scores.defaultProps = {
+  yourScore: 0,
+  hisScore: 0,
 };
 
 // == Export
