@@ -20,11 +20,19 @@ const App = () => {
   const [hisScore, setHisScore] = useState(0);
   const winner = calculateWinner(squares);
 
+  /**
+   * Lorsque l'utilisateur clique sur le bouton "Commencer",
+   * on rend cliquable la grille et on fait apparaitre les infos du jeu
+   */
   const startGame = () => {
     setSquares(Array(9).fill(null));
     setStart(true);
   };
 
+  /**
+   * Fonction déclenchée au clic sur l'une des cases
+   * @param {number} i 
+   */
   const handleClick = (i) => {
     const squaresCopy = [...squares];
     // Si la case "Commencer" n'a pas été cochée, on arrête la fonction
@@ -39,6 +47,10 @@ const App = () => {
     setXTurn(!xTurn);
   };
 
+  /**
+   * Fonction déclenchée par le useEffect qui vérifie si l'un des joueurs a gagné,
+   * Le cas échéant, on augmente son score
+   */
   const winPoint = () => {
     if (winner) {
       if (winner === 'X') {
