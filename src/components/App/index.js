@@ -22,7 +22,7 @@ const App = () => {
 
   /**
    * Lorsque l'utilisateur clique sur le bouton "Commencer",
-   * on rend cliquable la grille et on fait apparaitre les infos du jeu
+   * on initialise une grille vide, on la rend cliquable et on fait apparaitre les infos du jeu
    */
   const startGame = () => {
     setSquares(Array(9).fill(null));
@@ -31,7 +31,7 @@ const App = () => {
 
   /**
    * Fonction déclenchée au clic sur l'une des cases
-   * @param {number} i 
+   * Elle parcourt le tableau de cases et ajoute le pion du joueur dont c'est le tour
    */
   const handleClick = (i) => {
     const squaresCopy = [...squares];
@@ -79,7 +79,6 @@ const App = () => {
       <>
         <Turn
           xTurn={xTurn}
-
         />
         <Scores
           yourScore={yourScore}
