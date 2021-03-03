@@ -7,7 +7,7 @@ import './styles.scss';
 
 // == Composant
 const Turn = ({ xTurn }) => (
-  <div className="turn">Prochain joueur : {xTurn ? 'X' : 'O'}</div>
+  <div className="turn">{xTurn ? 'C\'est votre tour' : 'Votre adversaire joue'}</div>
 );
 
 Turn.propTypes = {
