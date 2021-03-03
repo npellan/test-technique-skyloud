@@ -49,17 +49,20 @@ const App = () => {
 
   /**
    * Fonction déclenchée par le useEffect qui vérifie si l'un des joueurs a gagné,
-   * Le cas échéant, on augmente son score
+   * Le cas échéant, on augmente son score et on fige la partie
+   * jusqu'au clic sur "Recommencer"
    */
   const winPoint = () => {
     if (winner) {
       if (winner === 'X') {
         const yourNewScore = yourScore + 1;
         setYourScore(yourNewScore);
+        setStart(false);
       }
       else if (winner === 'O') {
         const hisNewScore = hisScore + 1;
         setHisScore(hisNewScore);
+        setStart(false);
       }
     }
   };
@@ -72,19 +75,23 @@ const App = () => {
     <div className="app">
       <h1 className="app__title">Tic-Tac-Toe</h1>
       {!start && (
-        <Button onClick={startGame} />
-      )}
-      <Squares squares={squares} onClick={handleClick} />
-      {start && (
-      <>
-        <Turn
-          xTurn={xTurn}
+        <Button
+          onClick={startGame}
+          yourScore={yourScore}
+          hisScore={hisScore}
         />
+      )}
+      {start && (
         <Scores
           yourScore={yourScore}
           hisScore={hisScore}
         />
-      </>
+      )}
+      <Squares squares={squares} onClick={handleClick} />
+      {start && (
+        <Turn
+          xTurn={xTurn}
+        />
       )}
     </div>
   );
