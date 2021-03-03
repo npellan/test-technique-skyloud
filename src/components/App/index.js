@@ -15,6 +15,11 @@ const App = () => {
   const [turn, setTurn] = useState('X');
   const [yourScore, setYourScore] = useState(0);
   const [hisScore, setHisScore] = useState(0);
+  const [start, setStart] = useState(false);
+
+  const startGame = () => {
+    setStart(true);
+  };
 
   const handleClick = (i) => {
     if (turn === 'X') {
@@ -40,15 +45,21 @@ const App = () => {
   return (
     <div className="app">
       <h1 className="app__title">Tic-Tac-Toe</h1>
-      <Squares squares={squares} onClick={handleClick} />
-      <Button />
-      <Turn
-        turn={turn}
-      />
-      <Scores
-        yourScore={yourScore}
-        hisScore={hisScore}
-      />
+      {!start && (
+        <Button onClick={startGame} />
+      )}
+      {start && (
+      <>
+        <Squares squares={squares} onClick={handleClick} />
+        <Turn
+          turn={turn}
+        />
+        <Scores
+          yourScore={yourScore}
+          hisScore={hisScore}
+        />
+      </>
+      )}
     </div>
   );
 };
