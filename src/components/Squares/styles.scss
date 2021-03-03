@@ -1,0 +1,17 @@
+.squares {
+  margin-top: 1rem;
+  padding: 3rem;
+  min-height: 500px;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.square {
+  color: #fff;
+  background: #0037fe;
+  border: 1px solid #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

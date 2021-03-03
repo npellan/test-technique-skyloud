@@ -1,0 +1,20 @@
+.scores {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.score {
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #0037fe;
+}
+
+.score__title {
+  margin-bottom: 1rem;
+}
+
+.score__number {
+  font-size: 1.5rem;
+}
