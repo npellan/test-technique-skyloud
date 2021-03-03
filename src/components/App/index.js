@@ -14,18 +14,21 @@ import { calculateWinner } from '../../selectors/winner';
 // == Composant
 const App = () => {
   const [start, setStart] = useState(false);
-  const [squares, setSquares] = useState(Array(9).fill(null));
+  const [squares, setSquares] = useState(['', '', '', '', '💪', '', '', '', '']);
   const [xTurn, setXTurn] = useState(true);
   const [yourScore, setYourScore] = useState(0);
   const [hisScore, setHisScore] = useState(0);
   const winner = calculateWinner(squares);
 
   const startGame = () => {
+    setSquares(Array(9).fill(null));
     setStart(true);
   };
 
   const handleClick = (i) => {
     const squaresCopy = [...squares];
+    // Si la case "Commencer" n'a pas été cochée, on arrête la fonction
+    if (!start) return;
     // Si la case est déjà occupée, on arrête la fonction
     if (squaresCopy[i]) return;
     // Sinon, on affiche 'X' ou 'O' dans la case sélectionnée suivant l'ordre du tour
@@ -59,11 +62,12 @@ const App = () => {
       {!start && (
         <Button onClick={startGame} />
       )}
+      <Squares squares={squares} onClick={handleClick} />
       {start && (
       <>
-        <Squares squares={squares} onClick={handleClick} />
         <Turn
           xTurn={xTurn}
+
         />
         <Scores
           yourScore={yourScore}
