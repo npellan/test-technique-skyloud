@@ -1,5 +1,5 @@
 // == Import npm
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 // == Import
 import './styles.scss';
@@ -9,6 +9,8 @@ import Button from 'src/components/Button';
 import Turn from 'src/components/Turn';
 import Scores from 'src/components/Scores';
 
+import { calculateWinner } from '../../selectors/winner';
+
 // == Composant
 const App = () => {
   const [start, setStart] = useState(false);
@@ -16,6 +18,7 @@ const App = () => {
   const [xTurn, setXTurn] = useState(true);
   const [yourScore, setYourScore] = useState(0);
   const [hisScore, setHisScore] = useState(0);
+  const winner = calculateWinner(squares);
 
   const startGame = () => {
     setStart(true);
@@ -32,6 +35,23 @@ const App = () => {
     // Le tour passe à l'autre joueur
     setXTurn(!xTurn);
   };
+
+  const winPoint = () => {
+    if (winner) {
+      if (winner === 'X') {
+        const yourNewScore = yourScore + 1;
+        setYourScore(yourNewScore);
+      }
+      else if (winner === 'O') {
+        const hisNewScore = hisScore + 1;
+        setHisScore(hisNewScore);
+      }
+    }
+  };
+
+  useEffect(() => {
+    winPoint();
+  }, [squares]);
 
   return (
     <div className="app">
