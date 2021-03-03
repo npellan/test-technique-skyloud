@@ -6,12 +6,12 @@ import PropTypes from 'prop-types';
 import './styles.scss';
 
 // == Composant
-const Turn = ({ turn = 'Vous' }) => (
-  <div className="turn">Prochain joueur : {turn}</div>
+const Turn = ({ xTurn }) => (
+  <div className="turn">Prochain joueur : {xTurn ? 'X' : 'O'}</div>
 );
 
 Turn.propTypes = {
-  turn: PropTypes.string.isRequired,
+  xTurn: PropTypes.bool.isRequired,
 };
 
 // == Export
